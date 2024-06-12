@@ -1,14 +1,15 @@
-.game-board {
+/* .game-board {
   display: grid;
   grid-template-rows: 100px 100px 100px;
   grid-template-columns: 100px 100px 100px;
-}
+} */
 
 /* // for some css stylings */
 body {
 display: flex;
 justify-content: center;
 }
+
 .box {
 background: #444;
 border: 1px solid #555;

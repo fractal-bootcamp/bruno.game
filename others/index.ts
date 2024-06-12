@@ -1,4 +1,4 @@
-import { checkWinCondition } from './firstattemptBruno';
+import { checkWinCondition } from '../src/firstattemptBruno';
 
 const testBoard = [
     ['', '', '', '', '', '', '', '', '']

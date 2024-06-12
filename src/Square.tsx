@@ -1,24 +1,11 @@
-import { useState } from "react"
-import Game from "./game"
+// import { useState } from "react"
 
+// //function Square takes a value and an onSquareClick
+// // and displays a value when clicked on the square
 
-export default function Square() {
-    const [value, setValue] = useState<string>('');
-    const [boxvalue, setBoxvalue] = useState<any[]>([]);
+// export function Square(value, onClick) {
 
-    function handleClick() {
-        setValue(value + 'X');
-        console.log('clicked!');
-        console.log(Game[0])
-        // setBoxvalue(boxvalue.push[game.board[]])
-    }
-
-    return (
-        <>
-            <button className="square" onClick={handleClick}>
-                {value}
-            </button>
-        </>
-    )
-}
-
+//     return (
+//         <button className="square" onClick={ }>{value}</button>
+//     )
+// }
