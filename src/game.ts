@@ -13,36 +13,69 @@ const game: Game = {
     board: board,
 }
 
+
 type VictoryPosition = [number, number, number]
 
 //positibilities of winning
 const victoryConditions: VictoryPosition[] = [
+    // row win conditions
     [0, 1, 2],
     [3, 4, 5],
     [6, 7, 8],
+    // column win conditions
     [0, 4, 8],
     [6, 4, 2],
     [0, 3, 6],
+    // diagonal win conditions
     [1, 4, 7],
     [2, 5, 8]
 ]
 
-export interface WinCondition {
-    outcome: 'win' | 'draw' | null
-    winner?: 'x' | 'o'
-}
 
-export function checkWinCondition(game: Game): WinCondition {
+// export interface WinCondition {
+//     outcome: 'win' | 'draw' | null
+//     winner?: 'x' | 'o'
+// }
 
-    function isWinningPosition(position: VictoryPosition): boolean {
-        const positionsAreEqual = position.every(i => position[i] !== null && position[i] == position[0])
-        if (positionsAreEqual) return true
-        return false
+// export function checkWinCondition(game: Game): WinCondition {
+
+//     function isWinningPosition(position: VictoryPosition): boolean {
+//         const positionsAreEqual = position.every(i => position[i] !== null && position[i] == position[0])
+//         if (positionsAreEqual) return true
+//         return false
+//     }
+
+
+//TODO: use the winningposition to find the winner and return the outcome
+// otherwise a return a draw if all the spaces are full
+
+// winningPosition to find the winner
+//who is the winner? One of the victoryConditions
+
+//     function findTheWinner(position: VictoryPosition, winner: WinCondition): string {
+
+//         const winningPosition = victoryConditions.find(isWinningPosition)
+
+//         if (game.board[i] === winningPosition ) {
+//             winner: 'x'
+//         }
+//     }
+
+
+//     return { outcome: null }
+// }
+
+function checkWinner(): string {
+    for (const combination of victoryConditions) {
+        const [a, b, c] = combination;
+        if (game.board[a] && game.board[a] === game.board[b] && game.board[a] === game.board[c]) {
+            return `${game.board[a]} is the winner`;
+        }
     }
-
-    const winningPosition = victoryConditions.find(isWinningPosition)
-    //TODO: use the winningposition to find the winner and return the outcome
-    // otherwise a return a draw if all the spaces are full
-
-    return { outcome: null }
+    return 'No winner';
 }
+
+// Example usage:
+game.board = ['x', 'x', 'x', null, 'o', 'o', null, null, null];
+const result = checkWinner();
+console.log(result); // Output: "x is the winner"
