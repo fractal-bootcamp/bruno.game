@@ -3,7 +3,7 @@
 
 type Cell = 'x' | 'o' | null
 
-export interface Game {
+export default interface Game {
     board: Cell[]
 }
 
@@ -30,6 +30,30 @@ const victoryConditions: VictoryPosition[] = [
     [1, 4, 7],
     [2, 5, 8]
 ]
+
+//Simpler solution: combining both needs, the definition on who is the winner, as well as who won.
+//It is not really necessary to define it or do a double work.
+function checkWinner(): string {
+    //for a constant [a,b,c] of victoryCodintions, i.e., the array of possible combinations of victory,
+    for (const combination of victoryConditions) {
+        const [a, b, c] = combination;
+        // if the position of a, and if the value of the position of a is equal to the value of position in b, and b=c, then a=c,
+        //then "X" is the winner
+        if (game.board[a] && game.board[a] === game.board[b] && game.board[a] === game.board[c]) {
+            return `${game.board[a]} is the winner`;
+        }
+    }
+    return 'No winner';
+}
+
+// TEST
+game.board = ['x', 'x', 'x', null, 'o', 'o', null, null, null];
+const result = checkWinner();
+console.log(result); // Output: "x is the winner"
+
+
+
+
 
 
 // export interface WinCondition {
@@ -65,17 +89,3 @@ const victoryConditions: VictoryPosition[] = [
 //     return { outcome: null }
 // }
 
-function checkWinner(): string {
-    for (const combination of victoryConditions) {
-        const [a, b, c] = combination;
-        if (game.board[a] && game.board[a] === game.board[b] && game.board[a] === game.board[c]) {
-            return `${game.board[a]} is the winner`;
-        }
-    }
-    return 'No winner';
-}
-
-// Example usage:
-game.board = ['x', 'x', 'x', null, 'o', 'o', null, null, null];
-const result = checkWinner();
-console.log(result); // Output: "x is the winner"
